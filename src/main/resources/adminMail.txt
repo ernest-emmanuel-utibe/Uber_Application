@@ -1,0 +1,5 @@
+<p>Hi %s,
+            You have been invited as an admin to our uberApp.
+            Please click 'activate' below to activate your account.<br/>
+            <a href="%s"> Activate </a>
+</p>
