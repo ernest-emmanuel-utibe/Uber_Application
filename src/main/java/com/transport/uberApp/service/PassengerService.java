@@ -3,6 +3,7 @@ package com.transport.uberApp.service;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.transport.uberApp.data.dto.request.BookRideRequest;
 import com.transport.uberApp.data.dto.request.RegisterPassengerRequest;
+import com.transport.uberApp.data.dto.response.ApiResponse;
 import com.transport.uberApp.data.dto.response.RegisterResponse;
 import com.transport.uberApp.data.models.Passenger;
 import org.springframework.data.domain.Page;

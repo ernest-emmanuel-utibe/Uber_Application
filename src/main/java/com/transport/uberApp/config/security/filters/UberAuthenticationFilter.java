@@ -2,6 +2,7 @@ package com.transport.uberApp.config.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.transport.uberApp.config.security.util.JwtUtil;
+import com.transport.uberApp.data.models.AppUser;
 import com.transport.uberApp.exception.BusinessLogicException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

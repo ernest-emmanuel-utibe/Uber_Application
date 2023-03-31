@@ -1,5 +1,7 @@
 package com.transport.uberApp.notification;
 
+import com.transport.uberApp.config.mail.MailConfig;
+import com.transport.uberApp.data.dto.request.EmailNotificationRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;

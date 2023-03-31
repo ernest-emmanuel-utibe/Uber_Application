@@ -7,6 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MailConfig
-        private String apiKey;
-        private String mailUrl;
+public class MailConfig {
+    private String apiKey;
+    private String mailUrl;
+}

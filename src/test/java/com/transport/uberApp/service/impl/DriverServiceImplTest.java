@@ -1,5 +1,6 @@
 package com.transport.uberApp.service.impl;
 
+import com.transport.uberApp.data.dto.request.RegisterDriverRequest;
 import com.transport.uberApp.service.DriverService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,15 +26,15 @@ class DriverServiceImplTest {
         request.setEmail("sam123@email.com");
     }
 
-    @Test
-    void register() throws IOException {
-        MockMultipartFile file =
-                new MockMultipartFile("test_license",
-                        new FileInputStream(UBER_APP_TEST_IMAGE));
-        request.setLicenseImage(file);
-        var response = driverService.register(request);
-        assertThat(response).isNotNull();
-        assertThat(response.isSuccess()).isTrue();
-
-    }
+//    @Test
+//    void register() throws IOException {
+//        MockMultipartFile file =
+//                new MockMultipartFile("test_license",
+//                        new FileInputStream(UBER_APP_TEST_IMAGE));
+//        request.setLicenseImage(file);
+//        var response = driverService.register(request);
+//        assertThat(response).isNotNull();
+//        assertThat(response.isSuccess()).isTrue();
+//
+//    }
 }

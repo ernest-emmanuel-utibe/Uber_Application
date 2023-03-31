@@ -7,14 +7,20 @@ import com.github.fge.jsonpatch.JsonPatchException;
 import com.transport.uberApp.cloud.CloudService;
 import com.transport.uberApp.config.distance.DistanceConfig;
 import com.transport.uberApp.data.dto.request.BookRideRequest;
+import com.transport.uberApp.data.dto.request.LocationDto;
 import com.transport.uberApp.data.dto.request.RegisterPassengerRequest;
+import com.transport.uberApp.data.dto.response.ApiResponse;
+import com.transport.uberApp.data.dto.response.DistanceMatrixElement;
+import com.transport.uberApp.data.dto.response.GoogleDistanceResponse;
 import com.transport.uberApp.data.dto.response.RegisterResponse;
 import com.transport.uberApp.data.models.AppUser;
 import com.transport.uberApp.data.models.Passenger;
 import com.transport.uberApp.data.models.Role;
 import com.transport.uberApp.data.repositories.PassengerRepository;
+import com.transport.uberApp.exception.BusinessLogicException;
 import com.transport.uberApp.mapper.ParaMapper;
 import com.transport.uberApp.service.PassengerService;
+import com.transport.uberApp.util.AppUtilities;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -31,6 +37,8 @@ import java.time.ZoneOffset;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+
+import static com.transport.uberApp.util.AppUtilities.NUMBER_OF_ITEMS_PER_PAGE;
 
 @Service
 @AllArgsConstructor
@@ -123,7 +131,7 @@ public class PassengerServiceImpl implements PassengerService {
         return ApiResponse.builder().fare(fare).estimatedTimeOfArrival(eta).build();
     }
 
-    private DistanceMatrixElement getDistanceInformation(Location origin, Location destination) {
+    private DistanceMatrixElement getDistanceInformation(LocationDto origin, LocationDto destination) {
         RestTemplate restTemplate = new RestTemplate();
         String url = buildDistanceRequestUrl(origin, destination);
         ResponseEntity<GoogleDistanceResponse> response =
@@ -135,7 +143,7 @@ public class PassengerServiceImpl implements PassengerService {
                 .orElseThrow();
     }
 
-    private  String buildDistanceRequestUrl(Location origin, Location destination){
+    private  String buildDistanceRequestUrl(LocationDto origin, LocationDto destination){
         return directionConfig.getGoogleDistanceUrl()+"/"+AppUtilities.JSON_CONSTANT+"?"
                 +"destinations="+AppUtilities.buildLocation(destination)+"&origins="
                 +AppUtilities.buildLocation(origin)+"&mode=driving"+"&traffic_model=pessimistic"

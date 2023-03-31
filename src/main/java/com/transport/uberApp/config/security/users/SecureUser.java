@@ -1,5 +1,6 @@
 package com.transport.uberApp.config.security.users;
 
+import com.transport.uberApp.data.models.AppUser;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

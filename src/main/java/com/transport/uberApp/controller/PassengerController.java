@@ -1,6 +1,9 @@
 package com.transport.uberApp.controller;
 
 import com.github.fge.jsonpatch.JsonPatch;
+import com.transport.uberApp.data.dto.request.RegisterPassengerRequest;
+import com.transport.uberApp.data.dto.response.RegisterResponse;
+import com.transport.uberApp.service.PassengerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

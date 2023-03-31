@@ -1,5 +1,7 @@
 package com.transport.uberApp.util;
 
+import com.transport.uberApp.data.dto.request.LocationDto;
+import com.transport.uberApp.exception.BusinessLogicException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
@@ -62,8 +64,8 @@ public class AppUtilities {
     }
 
 
-    public static String buildLocation(Location location){
-        return location.getHouseNumber() + "," + location.getStreet() + "," + location.getCity()+location.getState();
+    public static String buildLocation(LocationDto locationDto){
+        return locationDto.getHouseNumber() + "," + locationDto.getStreet() + "," + locationDto.getCity()+ locationDto.getState();
     }
 
 

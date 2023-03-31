@@ -1,5 +1,7 @@
 package com.transport.uberApp.mapper;
 
+import com.transport.uberApp.data.dto.request.RegisterPassengerRequest;
+import com.transport.uberApp.data.models.AppUser;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

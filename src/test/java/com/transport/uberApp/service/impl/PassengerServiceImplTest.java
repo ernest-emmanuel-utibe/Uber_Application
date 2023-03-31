@@ -7,6 +7,15 @@ import com.github.fge.jackson.jsonpointer.JsonPointer;
 import com.github.fge.jackson.jsonpointer.JsonPointerException;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.ReplaceOperation;
+import com.transport.uberApp.data.dto.request.BookRideRequest;
+import com.transport.uberApp.data.dto.request.LocationDto;
+import com.transport.uberApp.data.dto.request.RegisterPassengerRequest;
+import com.transport.uberApp.data.dto.response.ApiResponse;
+import com.transport.uberApp.data.dto.response.RegisterResponse;
+import com.transport.uberApp.data.models.AppUser;
+import com.transport.uberApp.data.models.Passenger;
+import com.transport.uberApp.exception.BusinessLogicException;
+import com.transport.uberApp.service.PassengerService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -83,8 +92,8 @@ class PassengerServiceImplTest {
     private BookRideRequest buildBookRideRequest(Long passengerId){
         BookRideRequest bookRideRequest = new BookRideRequest();
         bookRideRequest.setPassengerId(passengerId);
-        bookRideRequest.setOrigin(new Location("312", "Herbert Macaulay Way", "Yaba", "Lagos"));
-        bookRideRequest.setDestination(new Location("371", "Herbert Macaulay Way", "Yaba", "Lagos"));
+        bookRideRequest.setOrigin(new LocationDto("312", "Herbert Macaulay Way", "Yaba", "Lagos"));
+        bookRideRequest.setDestination(new LocationDto("371", "Herbert Macaulay Way", "Yaba", "Lagos"));
         return bookRideRequest;
     }
 }

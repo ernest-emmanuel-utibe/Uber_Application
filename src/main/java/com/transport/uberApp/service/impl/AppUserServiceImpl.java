@@ -1,13 +1,25 @@
 package com.transport.uberApp.service.impl;
 
+import com.transport.uberApp.cloud.CloudService;
+import com.transport.uberApp.data.dto.response.ApiResponse;
+import com.transport.uberApp.data.models.AppUser;
+import com.transport.uberApp.data.models.Driver;
+import com.transport.uberApp.data.models.Passenger;
+import com.transport.uberApp.data.repositories.AppUserRepository;
+import com.transport.uberApp.exception.BusinessLogicException;
+import com.transport.uberApp.exception.UserNotFoundException;
 import com.transport.uberApp.service.AppUserService;
 import com.transport.uberApp.service.DriverService;
+import com.transport.uberApp.service.PassengerService;
+import com.transport.uberApp.util.AppUtilities;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
+
+import static com.transport.uberApp.exception.ExceptionMessage.USER_WITH_ID_NOT_FOUND;
 
 @Service
 @AllArgsConstructor
@@ -94,7 +106,6 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUser getByEmail(String email) {
-        return appUserRepository.findByEmail(email)
-                .orElseThrow(()->new UsernameNotFoundException("user with email not found"));
+        return appUserRepository.findByEmail(email);
     }
 }

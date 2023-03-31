@@ -29,4 +29,5 @@ public class Driver {
     private BankInformation bankInformation;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private AppUser userDetails;
+    private AcceptRide acceptRide;
 }

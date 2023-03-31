@@ -9,10 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Location {
+public class LocationDto {
     private String houseNumber;
     private String street;
     private String city;
-
     private String state;
 }

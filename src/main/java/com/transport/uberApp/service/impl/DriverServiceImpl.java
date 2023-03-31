@@ -1,6 +1,18 @@
 package com.transport.uberApp.service.impl;
 
+import com.transport.uberApp.cloud.CloudService;
+import com.transport.uberApp.data.dto.request.EmailNotificationRequest;
+import com.transport.uberApp.data.dto.request.Recipient;
+import com.transport.uberApp.data.dto.request.RegisterDriverRequest;
+import com.transport.uberApp.data.dto.response.RegisterResponse;
+import com.transport.uberApp.data.models.AppUser;
+import com.transport.uberApp.data.models.Driver;
+import com.transport.uberApp.data.models.Role;
+import com.transport.uberApp.data.repositories.DriverRepository;
+import com.transport.uberApp.exception.ImageUploadException;
+import com.transport.uberApp.notification.MailService;
 import com.transport.uberApp.service.DriverService;
+import com.transport.uberApp.util.AppUtilities;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

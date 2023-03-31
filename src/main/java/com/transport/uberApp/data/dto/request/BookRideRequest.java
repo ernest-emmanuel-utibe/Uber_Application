@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class BookRideRequest {
     private Long passengerId;
-    private Location origin;
-    private Location destination;
+    private LocationDto origin;
+    private LocationDto destination;
 }

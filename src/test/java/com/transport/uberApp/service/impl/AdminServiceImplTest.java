@@ -1,5 +1,6 @@
 package com.transport.uberApp.service.impl;
 
+import com.transport.uberApp.data.dto.request.InviteAdminRequest;
 import com.transport.uberApp.service.AdminService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Set;
 
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -27,7 +28,7 @@ class AdminServiceImplTest {
 
     @Test
     void sendAdminAnInviteRequestTest() {
-        var response = adminService.sendInviteRequests(inviteAdminRequest);
+        var response = adminService.sendInviteRequests(inviteAdminRequests);
         assertThat(response).isNotNull();
     }
 
