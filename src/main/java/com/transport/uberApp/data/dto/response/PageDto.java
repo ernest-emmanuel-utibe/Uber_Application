@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PageDto {
+public class PageDto<T> {
     private Long totalElements;
 
     private Long totalPages;

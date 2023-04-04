@@ -5,7 +5,7 @@ import com.transport.uberApp.data.dto.response.ApiResponse;
 import com.transport.uberApp.data.dto.response.PageDto;
 import com.transport.uberApp.data.dto.response.RideDto;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 
 public interface RideService {
     ApiResponse bookRide(BookRideRequest request);

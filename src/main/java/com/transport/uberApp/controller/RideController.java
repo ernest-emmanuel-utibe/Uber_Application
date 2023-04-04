@@ -4,13 +4,12 @@ import com.transport.uberApp.data.dto.request.BookRideRequest;
 import com.transport.uberApp.data.dto.response.ApiResponse;
 import com.transport.uberApp.data.dto.response.PageDto;
 import com.transport.uberApp.data.dto.response.RideDto;
+import com.transport.uberApp.service.RideService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
-
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.summary;
 
 @RestController
 @RequestMapping("/api/v1/ride")
@@ -24,9 +23,9 @@ public class RideController {
         return ResponseEntity.ok(rideService.bookRide(request));
     }
 
-    @GetMapping("")
+    @GetMapping("/history")
 //    @Operation(summary = "Get ride history")
-    public ResponseEntity<PageDto<RideDto>> getHistory(@ParameterObject Pageable pageable){
+    public ResponseEntity<PageDto<RideDto>> getRideHistory(Pageable pageable){
         return ResponseEntity.ok(rideService.getRideHistory(pageable));
     }
 }

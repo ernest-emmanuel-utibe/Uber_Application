@@ -2,24 +2,30 @@ package com.transport.uberApp.service.impl;
 
 import com.transport.uberApp.config.distance.DistanceConfig;
 import com.transport.uberApp.data.dto.request.BookRideRequest;
-import com.transport.uberApp.data.dto.response.ApiResponse;
-import com.transport.uberApp.data.dto.response.DistanceMatrixElement;
-import com.transport.uberApp.data.dto.response.PageDto;
-import com.transport.uberApp.data.dto.response.RideDto;
+import com.transport.uberApp.data.dto.request.LocationDto;
+import com.transport.uberApp.data.dto.response.*;
 import com.transport.uberApp.data.models.Location;
 import com.transport.uberApp.data.models.Passenger;
 import com.transport.uberApp.data.models.Ride;
 import com.transport.uberApp.data.repositories.RideRepository;
+import com.transport.uberApp.exception.BusinessLogicException;
 import com.transport.uberApp.service.PassengerService;
 import com.transport.uberApp.service.RideService;
 import com.transport.uberApp.util.AppUtilities;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -61,6 +67,7 @@ public class RideServiceImpl implements RideService {
         return modelMapper.map(rides, pageDtoTypeToken);
     }
 
+
     private DistanceMatrixElement getDistanceInformation(LocationDto origin, LocationDto destination) {
         RestTemplate restTemplate = new RestTemplate();
         String url = buildDistanceRequestUrl(origin, destination);
@@ -74,13 +81,10 @@ public class RideServiceImpl implements RideService {
     }
 
     private String buildDistanceRequestUrl(LocationDto origin, LocationDto destination) {
-        ;
         return directionConfig.getGoogleDistanceUrl() + "/" + AppUtilities.JSON_CONSTANT + "?"
                 + "destinations=" + AppUtilities.buildLocation(destination) + "&origins="
                 + AppUtilities.buildLocation(origin) + "&mode=driving" + "&traffic_model=pessimistic"
                 + "&departure_time=" + LocalDateTime.now().toEpochSecond(ZoneOffset.of("+01:00"))
                 + "&key=" + directionConfig.getGoogleApiKey();
     }
-
-
 }

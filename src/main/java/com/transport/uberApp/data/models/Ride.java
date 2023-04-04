@@ -2,10 +2,7 @@ package com.transport.uberApp.data.models;
 
 import com.transport.uberApp.data.dto.request.LocationDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,18 +12,26 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
+@Builder
+@Table(name = "rides")
 public class Ride {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Location startingPoint;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Location destinationPoint;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Passenger passenger;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location origin;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location destination;
+
     private String eta;
+
     private BigDecimal fare;
-    private LocalDateTime localDateTime;
+
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
 }

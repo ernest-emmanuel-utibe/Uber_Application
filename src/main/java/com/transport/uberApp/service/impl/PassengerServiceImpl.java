@@ -6,6 +6,7 @@ import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.transport.uberApp.cloud.CloudService;
 import com.transport.uberApp.config.distance.DistanceConfig;
+import com.transport.uberApp.config.security.users.SecureUser;
 import com.transport.uberApp.data.dto.request.BookRideRequest;
 import com.transport.uberApp.data.dto.request.LocationDto;
 import com.transport.uberApp.data.dto.request.RegisterPassengerRequest;
@@ -27,6 +28,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -157,5 +159,16 @@ public class PassengerServiceImpl implements PassengerService {
         registerResponse.setSuccess(true);
         registerResponse.setMessage("User Registration Successful");
         return registerResponse;
+    }
+
+    @Override
+    public Passenger getCurrentPassenger() {
+        try {
+            SecureUser secureUser = (SecureUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            log.info("SecureUser -> ", secureUser);
+            return passengerRepository.findPassengerByUserDetails_Email(secureUser.getUsername()).orElseThrow();
+        } catch (Exception e){
+            throw new BusinessLogicException("User not logged in");
+        }
     }
 }
