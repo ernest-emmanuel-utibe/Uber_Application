@@ -93,7 +93,7 @@ class PassengerServiceImplTest {
         BookRideRequest bookRideRequest = new BookRideRequest();
         bookRideRequest.setPassengerId(passengerId);
         bookRideRequest.setOrigin(new LocationDto("312", "Herbert Macaulay Way", "Yaba", "Lagos"));
-        bookRideRequest.setDestination(new LocationDto("371", "Herbert Macaulay Way", "Yaba", "Lagos"));
+        bookRideRequest.setDestination(new LocationDto("371", "Herbert Macaulay Way", "Sabo-Yaba", "Lagos"));
         return bookRideRequest;
     }
 }
