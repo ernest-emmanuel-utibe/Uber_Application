@@ -25,16 +25,4 @@ class DriverServiceImplTest {
         request.setName("Hong Kong");
         request.setEmail("sam123@email.com");
     }
-
-//    @Test
-//    void register() throws IOException {
-//        MockMultipartFile file =
-//                new MockMultipartFile("test_license",
-//                        new FileInputStream(UBER_APP_TEST_IMAGE));
-//        request.setLicenseImage(file);
-//        var response = driverService.register(request);
-//        assertThat(response).isNotNull();
-//        assertThat(response.isSuccess()).isTrue();
-//
-//    }
 }
