@@ -14,18 +14,22 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class AppUtilities {
+    
     public static final int NUMBER_OF_ITEMS_PER_PAGE = 3;
-    private static final String USER_VERIFICATION_BASE_URL="localhost:9090/api/v1/user/account/verify";
-    public static  final String WELCOME_MAIL_TEMPLATE_LOCATION="C:\\Users\\semicolon\\Documents\\code\\springboot-projects\\uber_deluxe\\src\\main\\resources\\welcome.txt";
+    
+    private static final String USER_VERIFICATION_BASE_URL = "localhost:9090/api/v1/user/account/verify";
+    
+    public static  final String WELCOME_MAIL_TEMPLATE_LOCATION = "C:\\Users\\semicolon\\Documents\\code\\springboot-projects\\uber_deluxe\\src\\main\\resources\\welcome.txt";
 
-    public static final String EMAIL_REGEX_STRING="^[A-Za-z0-9+_.-]+@(.+)$";
-    public static final String ADMIN_INVITE_MAIL_TEMPLATE_LOCATION="C:\\Users\\semicolon\\Documents\\code\\springboot-projects\\uber_deluxe\\src\\main\\resources\\adminMail.txt";
+    public static final String EMAIL_REGEX_STRING = "^[A-Za-z0-9+_.-]+@(.+)$";
+    
+    public static final String ADMIN_INVITE_MAIL_TEMPLATE_LOCATION = "C:\\Users\\semicolon\\Documents\\code\\springboot-projects\\uber_deluxe\\src\\main\\resources\\adminMail.txt";
 
-    public static final String JSON_CONSTANT="json";
+    public static final String JSON_CONSTANT = "json";
 
-    public static final String TRANSPORT_MODE="driving";
+    public static final String TRANSPORT_MODE = "driving";
 
-    public static final String UBER_DELUXE_TEST_IMAGE="C:\\Users\\semicolon\\Documents\\code\\springboot-projects\\uber_deluxe\\src\\main\\resources\\th.webp";
+    public static final String UBER_DELUXE_TEST_IMAGE = "C:\\Users\\semicolon\\Documents\\code\\springboot-projects\\uber_deluxe\\src\\main\\resources\\th.webp";
 
     public static String getMailTemplate(){
         try (BufferedReader reader = new BufferedReader(new FileReader(
@@ -46,7 +50,7 @@ public class AppUtilities {
     }
 
     public static String generateVerificationLink(Long userId){
-        return USER_VERIFICATION_BASE_URL+"?userId="+userId+"&token="+generateVerificationToken();
+        return USER_VERIFICATION_BASE_URL + "?userId=" + userId + "&token=" + generateVerificationToken();
     }
 
     private static String generateVerificationToken() {
