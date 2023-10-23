@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class UberAppAuthenticationManager implements AuthenticationManager {
+    
     private final AuthenticationProvider authenticationProvider;
+    
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         return authenticationProvider.authenticate(authentication);
