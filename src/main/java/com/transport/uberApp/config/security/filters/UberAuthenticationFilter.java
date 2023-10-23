@@ -29,24 +29,27 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class UberAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+    
     private final AuthenticationManager authenticationManager;
+    
     private final JwtUtil jwtUtil;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         ObjectMapper mapper = new ObjectMapper();
 
-        //TODO: 1. Create an authentication object that contains authentication credentials,
-        //TODO:    but is not yet authenticated.
+        //TODO: 1. Create an authentication object that contains authentication credentials, but is not yet authenticated.
         AppUser user;
         try {
             user= mapper.readValue(request.getInputStream(), AppUser.class);
             Authentication authentication =
                     new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+            
             //TODO: 2. Delegate authentication responsibility for authentication object in 1 to the manager
             //TODO: 3. Get back the now authenticated authentication object from the manager
             Authentication authenticationResult =
                     authenticationManager.authenticate(authentication);
+            
             //TODO: 4. store authenticated authentication object in the security context
             if (authenticationResult!=null) return getAuthentication(authenticationResult);
         } catch (IOException e) {
@@ -65,7 +68,7 @@ public class UberAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         ObjectMapper mapper = new ObjectMapper();
 
         Map<String, Object> claims = authResult.getAuthorities().stream()
-                .collect(Collectors.toMap(k->"claim", v->v));
+                .collect(Collectors.toMap(k -> "claim", v -> v));
 
         String accessToken = Jwts.builder()
                 .setIssuer("uber_deluxe")
