@@ -16,13 +16,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
+    
     private final AuthenticationManager authenticationManager;
+    
     private final JwtUtil jwtUtil;
+    
     private final String[] AUTHENTICATION_WHITE_LIST = {"/api/v1/driver/register", "/api/v1/passenger"};
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        
         UsernamePasswordAuthenticationFilter authenticationFilter = new UberAuthenticationFilter(authenticationManager, jwtUtil);
+        
         authenticationFilter.setFilterProcessesUrl("/api/v1/login");
+        
         return http.csrf().disable().cors().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
