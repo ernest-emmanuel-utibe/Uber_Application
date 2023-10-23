@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class SecureUser implements UserDetails {
+    
     private final AppUser appUser;
+    
     @Override
     public String getUsername() {
         return appUser.getEmail();
@@ -21,6 +23,7 @@ public class SecureUser implements UserDetails {
     public String getPassword() {
         return appUser.getPassword();
     }
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
