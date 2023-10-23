@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class UberAppAuthenticationProvider implements AuthenticationProvider {
+    
     private final UserDetailsService userDetailsService;
+    
     private final PasswordEncoder passwordEncoder;
 
 
@@ -24,7 +26,7 @@ public class UberAppAuthenticationProvider implements AuthenticationProvider {
         if (passwordEncoder.matches(authentication.getCredentials().toString(), appUserDetails.getPassword()))
             return new UsernamePasswordAuthenticationToken(appUserDetails.getUsername(), appUserDetails.getPassword(), appUserDetails.getAuthorities());
 
-        throw new BadCredentialsException("incorrect username or password");
+        throw new BadCredentialsException("Incorrect username or password");
     }
 
     @Override
