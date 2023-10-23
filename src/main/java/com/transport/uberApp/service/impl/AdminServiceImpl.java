@@ -36,8 +36,8 @@ public class AdminServiceImpl implements AdminService {
         String adminMail = AppUtilities.getAdminMailTemplate();
         request.setHtmlContent(String.format(adminMail, "admin", AppUtilities.generateVerificationLink(0L)));
         var response = mailService.sendHtmlMail(request);
-        if (response!=null) return ApiResponse.builder().message("invite requests sent").build();
-        throw new BusinessLogicException("invite requests sending failed");
+        if (response!=null) return ApiResponse.builder().message("Invite request sent").build();
+        throw new BusinessLogicException("Invite request sending failed");
     }
 
     private Admin createAdminProfile(InviteAdminRequest inviteAdminRequest) {
