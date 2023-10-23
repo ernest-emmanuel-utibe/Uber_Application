@@ -1,4 +1,4 @@
-package com.transport.uberApp.service.impl;
+ package com.transport.uberApp.service.impl;
 
 import com.transport.uberApp.data.dto.request.EmailNotificationRequest;
 import com.transport.uberApp.data.dto.request.InviteAdminRequest;
@@ -36,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
         String adminMail = AppUtilities.getAdminMailTemplate();
         request.setHtmlContent(String.format(adminMail, "admin", AppUtilities.generateVerificationLink(0L)));
         var response = mailService.sendHtmlMail(request);
-        if (response!=null) return ApiResponse.builder().message("Invite request sent").build();
+        if (response != null) return ApiResponse.builder().message("Invite request sent").build();
         throw new BusinessLogicException("Invite request sending failed");
     }
 
