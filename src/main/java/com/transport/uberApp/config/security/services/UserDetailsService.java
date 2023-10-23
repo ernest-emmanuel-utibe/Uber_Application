@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Service
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+    
     private final AppUserService appUserService;
 
     @Override
