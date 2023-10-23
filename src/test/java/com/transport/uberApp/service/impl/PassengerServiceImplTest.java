@@ -31,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Slf4j
 class PassengerServiceImplTest {
+    
     @Autowired
     private PassengerService passengerService;
     private RegisterPassengerRequest request;
