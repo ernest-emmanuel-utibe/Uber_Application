@@ -14,15 +14,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AppConfig {
+    
     @Value("${cloudinary.cloud.name}")
     private String cloudName;
+    
     @Value("${cloudinary.api.key}")
     private String apiKey;
+    
     @Value("${cloudinary.api.secret}")
     private String apiSecret;
 
     @Value("${google.distance.url}")
     private String googleDistanceUrl;
+    
     @Value("${google.api.key}")
     private String googleApiKey;
 
@@ -44,9 +48,9 @@ public class AppConfig {
     public Cloudinary cloudinary(){
         return new Cloudinary(
                 ObjectUtils.asMap(
-                        "cloud_name",cloudName,
-                        "api_key",apiKey,
-                        "api_secret",apiSecret
+                        "cloud_name", cloudName,
+                        "api_key", apiKey,
+                        "api_secret", apiSecret
                 )
         );
     }
