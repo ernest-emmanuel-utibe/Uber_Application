@@ -101,9 +101,6 @@ public class AppUserServiceImpl implements AppUserService {
         passengerService.savePassenger(passenger);
     }
 
-
-
-
     @Override
     public AppUser getByEmail(String email) {
         return appUserRepository.findByEmail(email);
