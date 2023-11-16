@@ -41,19 +41,22 @@ public class DriverServiceImpl implements DriverService {
         driverDetails.setCreatedAt(LocalDateTime.now().toString());
         driverDetails.setRoles(new HashSet<>());
         driverDetails.getRoles().add(Role.DRIVER);
-        //steps
+        //step
         //1. upload drivers license image
 
         var imageUrl = cloudService.upload(request.getLicenseImage());
         if (imageUrl==null)
             throw new ImageUploadException("Driver Registration failed");
+        // step
         //2. create driver object
         Driver driver = Driver.builder()
                 .userDetails(driverDetails)
                 .licenseImage(imageUrl)
                 .build();
+        //step
         //3. save driver
         Driver savedDriver = driverRepository.save(driver);
+        
         //4. send verification mail to driver
         EmailNotificationRequest emailRequest = buildNotificationRequest(savedDriver.getUserDetails().getEmail(), savedDriver.getUserDetails().getName(), driver.getId());
         String response = mailService.sendHtmlMail(emailRequest);
