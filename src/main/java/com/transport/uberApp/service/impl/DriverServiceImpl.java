@@ -47,17 +47,15 @@ public class DriverServiceImpl implements DriverService {
         var imageUrl = cloudService.upload(request.getLicenseImage());
         if (imageUrl==null)
             throw new ImageUploadException("Driver Registration failed");
-        // step
-        //2. create driver object
+        // step 2. create driver object
         Driver driver = Driver.builder()
                 .userDetails(driverDetails)
                 .licenseImage(imageUrl)
                 .build();
-        //step
-        //3. save driver
+        //step 3. save the driver
         Driver savedDriver = driverRepository.save(driver);
         
-        //4. send verification mail to driver
+        //4. send verification mail to driver.
         EmailNotificationRequest emailRequest = buildNotificationRequest(savedDriver.getUserDetails().getEmail(), savedDriver.getUserDetails().getName(), driver.getId());
         String response = mailService.sendHtmlMail(emailRequest);
         if (response==null) return getRegisterFailureResponse();
