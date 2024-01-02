@@ -40,10 +40,13 @@ public class RideServiceImpl implements RideService {
     public ApiResponse bookRide(BookRideRequest request) {
         //1. find passenger
         Passenger foundPassenger = passengerService.getCurrentPassenger();
+        
         //2. calculate distance between origin and destination
         DistanceMatrixElement distanceInformation = getDistanceInformation(request.getOrigin(), request.getDestination());
+        
         //3. calculate eta
         String eta = distanceInformation.getDuration().getText();
+        
         //4. calculate price
         BigDecimal fare = AppUtilities.calculateRideFare(distanceInformation.getDistance().getText());
         Ride ride = Ride.builder()
