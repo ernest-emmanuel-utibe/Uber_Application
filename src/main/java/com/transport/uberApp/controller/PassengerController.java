@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/passenger")
 @AllArgsConstructor
 public class PassengerController {
+
     private final PassengerService passengerService;
-
-
-
+    
     @PostMapping
     public ResponseEntity<?> register(@RequestBody RegisterPassengerRequest registerPassengerRequest){
         RegisterResponse registerResponse = passengerService.register(registerPassengerRequest);
