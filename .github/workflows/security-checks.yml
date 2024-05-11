@@ -1,32 +1,4 @@
-# name: Docker Build and Push
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-
-#       - name: Login to Docker Hub
-#         uses: docker/login-action@v1
-#         with:
-#           username: ${{ secrets.DOCKERHUB_USERNAME }}
-#           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-#       - name: Build and push Docker image
-#         run: |
-#           docker build -t samuel007/sonarqube:latest .
-#           docker push samuel007/sonarqube:latest
-
-
-
-name: Secure Docker Build and Push
+name: Docker Build and Push
 
 on:
   push:
@@ -41,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use specific SonarQube version
-        run: sed -i 's/FROM sonarqube.*/FROM sonarqube:8.9-community/' Dockerfile
-
       - name: Install Trivy
         run: |
           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
@@ -51,7 +20,7 @@ jobs:
           sudo apt-get update && sudo apt-get install trivy
 
       - name: Scan Docker image for vulnerabilities
-        run: trivy image samuel007/sonarqube:8.9-community
+        run: trivy image samuel007/sonarqube:latest  
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -61,5 +30,45 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t samuel007/sonarqube:8.9-community .
-          docker push samuel007/sonarqube:8.9-community
+          docker build -t samuel007/sonarqube:latest .
+          docker push samuel007/sonarqube:latest
+
+
+
+# name: Secure Docker Build and Push
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Use specific SonarQube version
+#         run: sed -i 's/FROM sonarqube.*/FROM sonarqube:8.9-community/' Dockerfile
+
+#       - name: Install Trivy
+#         run: |
+#           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+#           echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+#           sudo apt-get update && sudo apt-get install trivy
+
+#       - name: Scan Docker image for vulnerabilities
+#         run: trivy image samuel007/sonarqube:8.9-community
+
+#       - name: Login to Docker Hub
+#         uses: docker/login-action@v1
+#         with:
+#           username: ${{ secrets.DOCKERHUB_USERNAME }}
+#           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+#       - name: Build and push Docker image
+#         run: |
+#           docker build -t samuel007/sonarqube:8.9-community .
+#           docker push samuel007/sonarqube:8.9-community
