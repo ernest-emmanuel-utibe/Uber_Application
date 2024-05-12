@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
                         inviteAdminRequest.getUserDetails().getEmail()))
                 .toList();
         request.getTo().addAll(recipients);
-
+     
 
         String adminMail = AppUtilities.getAdminMailTemplate();
         request.setHtmlContent(String.format(adminMail, "admin", AppUtilities.generateVerificationLink(0L)));
