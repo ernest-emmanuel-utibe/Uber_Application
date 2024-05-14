@@ -2,5 +2,6 @@
 # FROM sonarqube:latest
 FROM sonarqube:8.9-community
 
+
 # Expose SonarQube port
 EXPOSE 9000
